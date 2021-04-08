@@ -8,23 +8,46 @@ class Employee {
     }
 
     // add following methods
-    // getName()
-    // getId()
-    // getEmail()
-    // getrole()  - returns 'Employee'
+    getName()
+    getId()
+    getEmail()
+    getrole()   // returns 'Employee'
 }
 
-class Manager extends Employee {}
-    // add officeNumber property
-    // getRole()  - returns 'Manager'
+class Manager extends Employee {
+    constructor(name, id, email, officeNumber) {
+        this.name = name;
+        this.id = id;
+        this.email = email;
+        this.officeNumber = officeNumber;
+    }
 
-class Engineer extends Employee {}
-    // add gitHub property
-    // getGithub()
-    // getRole()  - returns 'Engineer'
+    getRole()  // returns 'Manager'
+}
 
-class Intern extends Employee {}
-    // add school property
-    // getSchool()
-    // getRole()  - returns 'Intern"
+class Engineer extends Employee {
+    constructor(name, id, email, gitHub) {
+        this.name = name;
+        this.id = id;
+        this.email = email;
+        this.gitHub = gitHub;
+    }
+
+    getGithub()
+    getRole()  // returns 'Engineer'
+}
+
+class Intern extends Employee {
+    constructor(name, id, email, school) {
+        this.name = name;
+        this.id = id;
+        this.email = email;
+        this.school = school;
+    }
+
+    getSchool()
+    getRole()  // returns 'Intern"
+}
+    
+    
 
