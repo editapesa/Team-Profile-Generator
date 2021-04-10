@@ -31,7 +31,6 @@ inquirer.prompt([
     }
 ])
     
-    // ??? need to add mgr, eng, intern questions
 .then((response) => {
         if (response.role === 'Engineer')  {
             getGithub();
@@ -57,7 +56,7 @@ function getSchool() {
         inquirer.prompt([
             {
                 type: 'input',
-                message: "What is their school name?",
+                message: "Which school do they attend?",
                 name: 'school',
             }
         ])
