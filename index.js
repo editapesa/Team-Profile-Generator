@@ -76,6 +76,16 @@ function addEngineer() {
                 choices: ['Add an engineer', 'Add an intern', 'Finish building team'],
             },
         ])
+
+        .then((response) => {
+            if (response.nextStep === 'Add an engineer')  {
+                addEngineer();
+            }else if (response.nextStep === 'Add an intern') {
+                addIntern();
+            }else {
+                finishTeam();
+            }
+        });
     };
 
 function addIntern() {
@@ -107,6 +117,16 @@ function addIntern() {
                 choices: ['Add an engineer', 'Add an intern', 'Finish building team'],
             },
         ])
+
+        .then((response) => {
+            if (response.nextStep === 'Add an engineer')  {
+                addEngineer();
+            }else if (response.nextStep === 'Add an intern') {
+                addIntern();
+            }else {
+                finishTeam();
+            }
+        });
     };
 
 function finishTeam() {
