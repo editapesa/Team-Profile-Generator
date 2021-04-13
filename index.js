@@ -213,6 +213,7 @@ function generateHtml(answers) {
     </html>`;
     }
 
+// fs.writeFile('index.html', generateHtml(answers))
 
 // ??? function to write html, init app, call to init app??
 // function writeToFile(fileName, data) {
