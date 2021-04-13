@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-// const util = require('util');
 
 const Employee = require('./lib/employee');
 
@@ -8,135 +7,7 @@ const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 
-// const writeFileAsync = util.promisify(fs.writeFile);
-
-
-inquirer.prompt([
-    {
-        type: 'input',
-        message: "Enter the team manager's name.",
-        name: 'mgrName',
-    },
-    {
-        type: 'input',
-        message: "Enter the team manager's ID number.",
-        name: 'mgrId',
-    },
-    {
-        type: 'input',
-        message: "Enter the team manager's email.",
-        name: 'mgrEmail',
-    },
-    {
-        type: 'input',
-        message: "Enter the team manager's office number.",
-        name: 'officeNbr',
-    },
-    {
-        type: 'list',
-        message: 'What would you like to do next?',
-        name: 'nextStep',
-        choices: ['Add an engineer', 'Add an intern', 'Finish building team'],
-    },
-])
-    
-.then((answers) => {
-        if (answers.nextStep === 'Add an engineer')  {
-            addEngineer();
-        }else if (answers.nextStep === 'Add an intern') {
-            addIntern();
-        }else {
-            console.log('\nTeam building is completed and an HTML file will be created');
-            generateHtml();
-        }      
-    });
-
-function addEngineer() {
-        inquirer.prompt([
-            {
-                type: 'input',
-                message: "Enter the engineer's name.",
-                name: 'engName',
-            },
-            {
-                type: 'input',
-                message: "Enter the engineer's ID number.",
-                name: 'engId',
-            },
-            {
-                type: 'input',
-                message: "Enter the engineer's email.",
-                name: 'engEmail',
-            },
-            {
-                type: 'input',
-                message: "What is their GitHub profile username?",
-                name: 'github',
-            },
-            {
-                type: 'list',
-                message: 'What would you like to do next?',
-                name: 'nextStep',
-                choices: ['Add an engineer', 'Add an intern', 'Finish building team'],
-            },
-        ])
-
-        .then((answers) => {
-            if (answers.nextStep === 'Add an engineer')  {
-                addEngineer();
-            }else if (answers.nextStep === 'Add an intern') {
-                addIntern();
-            }else {
-                console.log('\nTeam building is completed and an HTML file will be created');
-                generateHtml();
-            }      
-        });
-    };
-
-function addIntern() {
-        inquirer.prompt([
-            {
-                type: 'input',
-                message: "Enter the intern's name.",
-                name: 'intName',
-            },
-            {
-                type: 'input',
-                message: "Enter the intern's ID number.",
-                name: 'intId',
-            },
-            {
-                type: 'input',
-                message: "Enter the intern's email?",
-                name: 'intEmail',
-            },
-            {
-                type: 'input',
-                message: "Which school do they attend?",
-                name: 'school',
-            },
-            {
-                type: 'list',
-                message: 'What would you like to do next?',
-                name: 'nextStep',
-                choices: ['Add an engineer', 'Add an intern', 'Finish building team'],
-            },
-        ])
-
-        .then((answers) => {
-            if (answers.nextStep === 'Add an engineer')  {
-                addEngineer();
-            }else if (answers.nextStep === 'Add an intern') {
-                addIntern();
-            }else {
-                console.log('\nTeam building is completed and an HTML file will be created');
-                generateHtml();
-            }         
-        });
-    };
-
-function generateHtml(answers) {
-    return
+const generateHtml = (answers) =>
     `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -211,26 +82,141 @@ function generateHtml(answers) {
     
     </body>
     </html>`;
-    }
 
-// fs.writeFile('index.html', generateHtml(answers))
+inquirer.prompt([
+    {
+        type: 'input',
+        message: "Enter the team manager's name.",
+        name: 'mgrName',
+    },
+    {
+        type: 'input',
+        message: "Enter the team manager's ID number.",
+        name: 'mgrId',
+    },
+    {
+        type: 'input',
+        message: "Enter the team manager's email.",
+        name: 'mgrEmail',
+    },
+    {
+        type: 'input',
+        message: "Enter the team manager's office number.",
+        name: 'officeNbr',
+    },
+    {
+        type: 'list',
+        message: 'What would you like to do next?',
+        name: 'nextStep',
+        choices: ['Add an engineer', 'Add an intern', 'Finish building team'],
+    },
+])
+    
+.then((answers) => {
+        if (answers.nextStep === 'Add an engineer')  {
+            addEngineer();
+        }else if (answers.nextStep === 'Add an intern') {
+            addIntern();
+        }else {
+            const htmlContent = generateHtml(answers);
+                
+            fs.writeFile('index.html', htmlContent, (err) =>
+            err ? console.log(err) : console.log('\nTeam building is completed and an HTML file will be created')
+            );
+        }      
+    });
 
-// ??? function to write html, init app, call to init app??
-// function writeToFile(fileName, data) {
-//     return fs.writeFileSync(fileName, data);
-// }
+function addEngineer() {
+        inquirer.prompt([
+            {
+                type: 'input',
+                message: "Enter the engineer's name.",
+                name: 'engName',
+            },
+            {
+                type: 'input',
+                message: "Enter the engineer's ID number.",
+                name: 'engId',
+            },
+            {
+                type: 'input',
+                message: "Enter the engineer's email.",
+                name: 'engEmail',
+            },
+            {
+                type: 'input',
+                message: "What is their GitHub profile username?",
+                name: 'github',
+            },
+            {
+                type: 'list',
+                message: 'What would you like to do next?',
+                name: 'nextStep',
+                choices: ['Add an engineer', 'Add an intern', 'Finish building team'],
+            },
+        ])
 
-// then(answers => {
-//     writeToFile('index.html', generateHtml({...answers}))
-// })
+        .then((answers) => {
+            if (answers.nextStep === 'Add an engineer')  {
+                addEngineer();
+            }else if (answers.nextStep === 'Add an intern') {
+                addIntern();
+            }else {
+                const htmlContent = generateHtml(answers);
+                
+                fs.writeFile('index.html', htmlContent, (err) =>
+                err ? console.log(err) : console.log('\nTeam building is completed and an HTML file will be created')
+                );
+            }      
+        });
+    };
 
-// function init() {
-//     inquirer.prompt(questions).then(answers => {
-//         writeToFile('index.html', generateHtml({...answers}))
-//     })
-// }
+function addIntern() {
+        inquirer.prompt([
+            {
+                type: 'input',
+                message: "Enter the intern's name.",
+                name: 'intName',
+            },
+            {
+                type: 'input',
+                message: "Enter the intern's ID number.",
+                name: 'intId',
+            },
+            {
+                type: 'input',
+                message: "Enter the intern's email?",
+                name: 'intEmail',
+            },
+            {
+                type: 'input',
+                message: "Which school do they attend?",
+                name: 'school',
+            },
+            {
+                type: 'list',
+                message: 'What would you like to do next?',
+                name: 'nextStep',
+                choices: ['Add an engineer', 'Add an intern', 'Finish building team'],
+            },
+        ])
 
-// init();
+        .then((answers) => {
+            if (answers.nextStep === 'Add an engineer')  {
+                addEngineer();
+            }else if (answers.nextStep === 'Add an intern') {
+                addIntern();
+            }else {
+                const htmlContent = generateHtml(answers);
+                
+                fs.writeFile('index.html', htmlContent, (err) =>
+                err ? console.log(err) : console.log('\nTeam building is completed and an HTML file will be created')
+                );
+            }         
+        });
+    };
+
+
 
 
 
