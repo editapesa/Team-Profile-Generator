@@ -18,6 +18,6 @@ Click the link below to see a video of how the application works.
 
 [Team Profile Gen](https://url.com)
 
-![demo pic 1](Images\webpage-demo.jpg)
+![demo pic 1](Images/webpage-demo.jpg)
 
-![demo pic 2](Images\vscode-demo.png)
+![demo pic 2](Images/vscode-demo.png)
