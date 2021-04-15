@@ -16,7 +16,7 @@ This project is licensed under the MIT license.
 ## Usage
 Click the link below to see a video of how the application works.
 
-[Team Profile Gen](https://url.com)
+[Team Profile Gen](https://drive.google.com/file/d/1Ab3fmLygTmuAyEK7RDL5O478GgmWqQH2/view)
 
 ![demo pic 1](Images/webpage-demo.jpg)
 
